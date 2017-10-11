@@ -1,91 +1,91 @@
 ## **Hibernate阶段性练习**
 - 练习Hibernate的配置主要是一个xml文件hibernate.cfg.xml
     <?xml version='1.0' encoding='utf-8'?>
-    <!-- 表明解析本XML文件的DTD文档位置，DTD是Document Type Definition 的缩写
-    即文档类型的定义，XML解析器使用DTD文档来检查XML文件的合法性。
-    hibernate.sourceforge.net/hibernate-configuration-3.0.dtd可以在Hibernate5.2.11软件包中的hibernate-release-5.2.11.Final\project\hibernate-core\src\main\resources\org\hibernate目录中找到此文件
-    -->
-    <!DOCTYPE hibernate-configuration PUBLIC
-            "-//Hibernate/Hibernate Configuration DTD//EN"
-            "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-    <!-- hibernate配置文件的根元素，其他文件要包含在其中 -->
-    <hibernate-configuration>
-        <!-- 表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存Hibernate的配置信息，以及对Session的操作-->
-        <session-factory>
-            <!-- 数据库连接信息： -->
-            <!-- 设置数据库的连接url：jdbc:mysql://localhost:3306/hibernate,其中localhost 表示MySQL的服务器IP，此处为本机IP,hibernate是数据库名 -->
-            <property name="connection.url">jdbc:mysql://localhost:3306/hibernate</property>
-    
-            <!-- 配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序 -->
-            <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    
-            <!-- 连接数据库的用户名 -->
-            <property name="connection.username">root</property>
-            <!-- 连接数据库的密码 -->
-            <property name="connection.password">root</property>
-            <!-- hibernate.dialect 只是Hibernate 使用的数据库方言，就是要用Hibernate连接哪种类型的数据库服务器。 -->
-            <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    
-            <!-- 以下信息可选 -->
-            <!-- jdbc.use_scrollable_resultset是否允许Hibernate使用JDBC的可滚动的结果集。
-            对分页的结果集。对分页时的设置非常有帮助
-            -->
-            <property name="jdbc.use_scrollable_resultset">false</property>
-    
-            <!--  connection.useUnicode连接数据库时是否使用Unicdoe编码-->
-            <property name="connection.useUnicode">true</property>
-    
-            <!--  connection.characterEncoding连接数据库数据的传输字符集编码方式-->
-            <property name="connection.characterEncoding">UTF-8</property>
-    
-            <!--
-             create:先删除表，再建表。
-             create-drop:启动时建表，推出前删表。
-             update:如果表结构不一致，就创建或更新。
-             validate:启动时验证表结构，如果不一致就抛异常
-             -->
-            <property name="hibernate.hbm2ddl.auto">update</property>
-            <property name="hibernate.format_sql">true</property>
-            <!-- 是否显示SQL -->
-            <!-- 是否在后台显示Hibernate用到的sql语句，开发时设置为true,便于查错，程序运行时可以在Eclipse的控制台显示Hibernate的执行Sql语句。项目部署后可以设置为false，提高运行效率。 -->
-            <property name="hibernate.show_sql">true</property>
-    
-            <!-- 数据库连接池信息： -->
-            <property name="hibernate.connection.pool_size">50</property>
-    
-            <!-- 指定连接池的最大连接个数，使用连接池需要加载所有的连接池的JAR文件，JAR文件在Hibernate文件夹下的“\lib\optional\c3p0”中-->
-            <property name="hibernate.c3p0.max_size">100</property>
-            <property name="hibernate.c3p0.min_size">10</property>
-            <!-- 指定连接池的连接超时时长，即最大时间 -->
-            <property name="hibernate.c3p0.timeout">5000</property>
-            <property name="hibernate.c3p0.idle_test_period">3000</property>
-            <property name="hibernate.c3p0.acquire_increment">2</property>
-            <property name="hibernate.c3p0.max_statements">100</property>
-    
-            <!-- 数据库一次操作时的记录数 -->
-            <!-- jdbc.fetch_size 是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size 设置的越大，读数据库次数越少，速度越快，Fetch Size
-            设置的越小，读数据库的次数越多，速度越慢。
-             -->
-            <property name="jdbc.fetch_size">100</property>
-            <!-- jdbc.batch_size 是指Hibernate 批量插入，删除和更新时每次操作的记录数。
-            Batch Size 越大，批量操作的向数据库发送Sql的次数少，速度就越快，同样耗用内存就越大
-              -->
-            <property name="jdbc.batch_size">100</property>
-    
-            <!-- 先不开启二级缓存和查询缓存，开启二级缓存或者查询缓存，或者二者同时打开程序报错。 -->
-            <!-- 开启二级缓存 -->
-            <!--<property name="hibernate.cache.use_second_level_cache">true</property>-->
-            <!--<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>-->
-            <!--<property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>-->
-             <!--启用查询缓存 -->
-            <!--<property name="hibernate.cache.use_query_cache">true</property>-->
-    
-    
-            <!-- 指定映射文件，可映射多个映射文件，可以是class,也可以是resource. -->
-            <mapping class="com.hibernate.entity.SchoolEntity"/>
-            <!--<mapping resource="com/hibernate/entity/SchoolEntity.hbm.xml"/>-->
-        </session-factory>
-    </hibernate-configuration>
+        <!-- 表明解析本XML文件的DTD文档位置，DTD是Document Type Definition 的缩写
+        即文档类型的定义，XML解析器使用DTD文档来检查XML文件的合法性。
+        hibernate.sourceforge.net/hibernate-configuration-3.0.dtd可以在Hibernate5.2.11软件包中的hibernate-release-5.2.11.Final\project\hibernate-core\src\main\resources\org\hibernate目录中找到此文件
+        -->
+        <!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD//EN"
+                "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        <!-- hibernate配置文件的根元素，其他文件要包含在其中 -->
+        <hibernate-configuration>
+            <!-- 表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存Hibernate的配置信息，以及对Session的操作-->
+            <session-factory>
+                <!-- 数据库连接信息： -->
+                <!-- 设置数据库的连接url：jdbc:mysql://localhost:3306/hibernate,其中localhost 表示MySQL的服务器IP，此处为本机IP,hibernate是数据库名 -->
+                <property name="connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        
+                <!-- 配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序 -->
+                <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        
+                <!-- 连接数据库的用户名 -->
+                <property name="connection.username">root</property>
+                <!-- 连接数据库的密码 -->
+                <property name="connection.password">root</property>
+                <!-- hibernate.dialect 只是Hibernate 使用的数据库方言，就是要用Hibernate连接哪种类型的数据库服务器。 -->
+                <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+                <!-- 以下信息可选 -->
+                <!-- jdbc.use_scrollable_resultset是否允许Hibernate使用JDBC的可滚动的结果集。
+                对分页的结果集。对分页时的设置非常有帮助
+                -->
+                <property name="jdbc.use_scrollable_resultset">false</property>
+        
+                <!--  connection.useUnicode连接数据库时是否使用Unicdoe编码-->
+                <property name="connection.useUnicode">true</property>
+        
+                <!--  connection.characterEncoding连接数据库数据的传输字符集编码方式-->
+                <property name="connection.characterEncoding">UTF-8</property>
+        
+                <!--
+                 create:先删除表，再建表。
+                 create-drop:启动时建表，推出前删表。
+                 update:如果表结构不一致，就创建或更新。
+                 validate:启动时验证表结构，如果不一致就抛异常
+                 -->
+                <property name="hibernate.hbm2ddl.auto">update</property>
+                <property name="hibernate.format_sql">true</property>
+                <!-- 是否显示SQL -->
+                <!-- 是否在后台显示Hibernate用到的sql语句，开发时设置为true,便于查错，程序运行时可以在Eclipse的控制台显示Hibernate的执行Sql语句。项目部署后可以设置为false，提高运行效率。 -->
+                <property name="hibernate.show_sql">true</property>
+        
+                <!-- 数据库连接池信息： -->
+                <property name="hibernate.connection.pool_size">50</property>
+        
+                <!-- 指定连接池的最大连接个数，使用连接池需要加载所有的连接池的JAR文件，JAR文件在Hibernate文件夹下的“\lib\optional\c3p0”中-->
+                <property name="hibernate.c3p0.max_size">100</property>
+                <property name="hibernate.c3p0.min_size">10</property>
+                <!-- 指定连接池的连接超时时长，即最大时间 -->
+                <property name="hibernate.c3p0.timeout">5000</property>
+                <property name="hibernate.c3p0.idle_test_period">3000</property>
+                <property name="hibernate.c3p0.acquire_increment">2</property>
+                <property name="hibernate.c3p0.max_statements">100</property>
+        
+                <!-- 数据库一次操作时的记录数 -->
+                <!-- jdbc.fetch_size 是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size 设置的越大，读数据库次数越少，速度越快，Fetch Size
+                设置的越小，读数据库的次数越多，速度越慢。
+                 -->
+                <property name="jdbc.fetch_size">100</property>
+                <!-- jdbc.batch_size 是指Hibernate 批量插入，删除和更新时每次操作的记录数。
+                Batch Size 越大，批量操作的向数据库发送Sql的次数少，速度就越快，同样耗用内存就越大
+                  -->
+                <property name="jdbc.batch_size">100</property>
+        
+                <!-- 先不开启二级缓存和查询缓存，开启二级缓存或者查询缓存，或者二者同时打开程序报错。 -->
+                <!-- 开启二级缓存 -->
+                <!--<property name="hibernate.cache.use_second_level_cache">true</property>-->
+                <!--<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>-->
+                <!--<property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>-->
+                 <!--启用查询缓存 -->
+                <!--<property name="hibernate.cache.use_query_cache">true</property>-->
+        
+        
+                <!-- 指定映射文件，可映射多个映射文件，可以是class,也可以是resource. -->
+                <mapping class="com.hibernate.entity.SchoolEntity"/>
+                <!--<mapping resource="com/hibernate/entity/SchoolEntity.hbm.xml"/>-->
+            </session-factory>
+        </hibernate-configuration>
 
 - 练习一级缓存的增删改查和一些工具的使用。
 - 练习将已有的工具打包方便复用。
